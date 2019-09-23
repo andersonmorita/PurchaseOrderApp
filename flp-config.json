@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "com.sap.teched18.msgraph.PurchaseOrderApp.PurchaseOrderApp",
+        "description": "Purchaseorder",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#PurchaseOrderApp-Display",
+        "navigationComponentName": "com.sap.teched18.msgraph.PurchaseOrderApp",
+        "intentSemanticObject": "PurchaseOrderApp",
+        "intentAction": "Display",
+        "html5ApplicationName": "purchaseorderapp",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "5df8b5ce-4525-4e86-9e7c-c8c4df2f37dd"
+        ],
+        "contentPackages": [
+            "ebb90fc3-4443-4845-be54-29a3e56c84db"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Title",
+        "subtitle": "PurchaseOrder",
+        "searchKeywords": "Title,PurchaseOrder",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

@@ -1,0 +1,131 @@
+<!--<mvc:View controllerName="com.sap.teched18.msgraph.PurchaseOrderApp.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m">-->
+<mvc:View controllerName="com.sap.teched18.msgraph.PurchaseOrderApp.controller.MainView" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+<Page
+  title="Purchase Orders">
+	<headerContent>
+  <Button icon="sap-icon://person-placeholder" text="Logout" visible="{= !!${session>/userPrincipalName} }"
+    press="onLogout"/>
+</headerContent>
+  <!-- INSERT IN STEP 3 OF THE NEXT TUTORIAL -->
+  <content>
+    <List
+    noDataText="No purchase orders found"
+    items="{/PurchaseOrders}" >
+      <StandardListItem
+        type="Navigation"
+        title="{POId}"
+        description="{SupplierName}"
+        press="onClickPO"/>
+    </List>
+  </content>
+</Page>
+<!-- INSERT CODE IN STEP 5.2 HERE -->
+<Page
+  id="details"
+  title="Details"
+  navButtonPress="onNavButtonPress"
+  showNavButton="true">
+  <f:SimpleForm
+columnsM="1"
+editable="false"
+layout="ResponsiveGridLayout"
+singleContainerFullSize="false" >
+<Label text="Purchase Order ID" width="100%">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Link press="onPressLink" enabled="{= !!${session>/userPrincipalName} }" text="{POId}"/>
+<Label text="Supplier Name">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Link  press="onPressLink" enabled="{= !!${session>/userPrincipalName} }" text="{SupplierName}"/>
+<Label text="OrderedByName">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Link press="onPressLink" enabled="{= !!${session>/userPrincipalName} }" text="{OrderedByName}"/>
+<Label text="DeliveryAddress">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Link press="onPressLink" enabled="{= !!${session>/userPrincipalName} }" text="{DeliveryAddress}"/>
+<Label text="GrossAmount">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Text text="{GrossAmount}"/>
+<Label text="CurrencyCode">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Text text="{CurrencyCode}"/>
+<Label text="ItemCount">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Text text="{ItemCount}"/>
+<Label text="Changed At">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Text text="{ChangedAt}"/>
+<Label text="DeliveryDateEarliest">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Text text="{DeliveryDateEarliest}"/>
+<Label text="LaterDeliveryDateExist">
+  <layoutData>
+    <layout:GridData span="L4 M4"/>
+  </layoutData>
+</Label>
+<Text text="{LaterDeliveryDateExist}"/>
+  </f:SimpleForm>
+</Page>
+<Page
+	id="results"
+	title="Results"
+	navButtonPress="onNavButtonPress"
+	showNavButton="true">
+	<List
+		noDataText="No emails found"
+		items="{msData>/value}" >
+		<FeedListItem
+			sender="{msData>subject}"
+			showIcon="false"
+			info="{= ${msData>sender/emailAddress/address} + ' ('+${msData>sender/emailAddress/name} +')'}"
+			timestamp="{
+        path : 'msData>createdDateTime',
+        type : 'sap.ui.model.type.DateTime',
+        formatOptions : {
+          source : {
+          	UTC: true,
+            pattern : 'yyyy-MM-dd\'T\'hh\':\'mm\':\'ss\'Z\''
+          },
+          style: 'full',
+          relative: true
+        }
+      }"
+			text="&lt;br/&gt; {msData>bodyPreview}"
+			senderPress="onOpenEmail"
+			convertLinksToAnchorTags="All">
+		</FeedListItem>
+	</List>
+</Page>
+
+		</App>
+	</Shell>
+</mvc:View>
